@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/mvc
+                            http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--配置SpringMVC-->
+    <!--1 开启SpringMVC注解模式-->
+    <mvc:annotation-driven /> <!--这行代码作用，简化配置，自动handlerMapping等，还可以数据绑定日期等，Json都不需要配置了，默认支持-->
+
+    <mvc:default-servlet-handler /><!---->
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"><!--默认jsp的view，可把model和jsp在一起解析返回给用户-->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /><!--jsp的核心标签库jstl-->
+        <property name="prefix"  value="/WEB-INF/jsp/" /><!--controller层的return的jsp就可以简写了-->
+        <property name="suffix" value=".jsp" />
+    </bean>
+    <context:component-scan base-package="org.seckill.web" /><!--把web包下的controller加载到spring容器里-->
+</beans>

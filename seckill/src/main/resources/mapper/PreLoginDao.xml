@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.seckill.dao.PreLoginDao">
+    <!--目的是为dao接口方法提供sql语句配置-->
+    <!--
+   useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；
+   keyProperty="id"指定把获取到的主键值注入到User的id属性-->
+    <insert id="add" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert ignore into user(username, password, phone)
+        values(#{username},#{password},#{phone});
+    </insert>
+    <delete id="delete" parameterType="int">
+        delete from user where id=#{id};
+    </delete>
+    <update id="updateUserById" parameterType="int" >
+        update
+          user
+        set password=#{password}
+        where id=#{id};
+
+    </update>
+    <select id="queryByPhone" resultType="User" parameterType="Long">
+        select * from
+          user
+          where phone=#{phone};
+    </select>
+</mapper>
