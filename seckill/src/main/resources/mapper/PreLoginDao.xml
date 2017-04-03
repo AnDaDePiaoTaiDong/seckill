@@ -26,4 +26,11 @@
           user
           where phone=#{phone};
     </select>
+    <!--mybatis是通过查询记录数来返回true或者false的，不用count计数的话，返回0-->
+    <select id="queryAllUsername" parameterType="String" resultType="boolean">
+        select
+          count(username)
+          from user
+        where username=#{username};
+    </select>
 </mapper>

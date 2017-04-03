@@ -13,5 +13,7 @@ public interface PreLoginDao {
     boolean updateUserById(@Param("id")int id,@Param("password")String password);
     //根据手机号查询用户
     User queryByPhone(Long phone);
+    //根据用户名查询是否用户名重复
+    boolean queryAllUsername(String username);
 
 }

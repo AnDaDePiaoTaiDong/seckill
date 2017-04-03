@@ -41,7 +41,7 @@ public class PreLoginController {
         {
             model.addAttribute("username",username);
             model.addAttribute("phone",phone);
-            return "forward:/seckill/list";
+            return "redirect:/seckill/list";
         }
         else
             return "login";

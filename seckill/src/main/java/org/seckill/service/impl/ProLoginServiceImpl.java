@@ -27,13 +27,20 @@ public class ProLoginServiceImpl implements PreLoginService {
     public boolean registerUser(String username, String password, Long phone) {
         if (username == null || password == null || phone == null)
             return false;
-        User u = new User();
-        u.setUsername(username);
-        u.setPassword(password);
-        u.setPhone(phone);
-        return preLoginDao.add(u);
-    }
 
+        if (!isExist(phone)&& !preLoginDao.queryAllUsername(username))
+        {
+            User u = new User();
+            u.setUsername(username);
+            u.setPassword(password);
+            u.setPhone(phone);
+            return preLoginDao.add(u);
+        }
+        else
+        {
+            return false;
+        }
+    }
     @Override
     public boolean login(String username, String password, Long phone) {
         if (username == null || password == null || phone == null)
@@ -41,10 +48,14 @@ public class ProLoginServiceImpl implements PreLoginService {
         if (isExist(phone))
         {
             User databaseUser = preLoginDao.queryByPhone(phone);
-            if (username == databaseUser.getUsername() && password == databaseUser.getPassword())
+            if (username.equals(databaseUser.getUsername()) && password.equals(databaseUser.getPassword()))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
         else
         {

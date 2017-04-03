@@ -29,7 +29,7 @@ public class PreLoginServiceTest {
     public void testRegisterUser() throws Exception {
         String username="xd";
         String password="root";
-        Long phone=15605695058L;
+        Long phone=12222222222L;
         boolean b1=preLoginService.registerUser(username,password,phone);
         logger.info("b1={}",b1);
 
