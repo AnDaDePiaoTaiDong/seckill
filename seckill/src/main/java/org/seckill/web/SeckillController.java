@@ -49,11 +49,11 @@ public class SeckillController {
     }
     //ajax json数据请求处理
     //method = RequestMethod.POST,post方式只能添加和修改信息，对浏览框中修改的地址无效
-    @RequestMapping(value = "/{seckillId}/expser",
-            method = RequestMethod.POST
-            )//produces = {"application/json;charset=UTF-8"}
+    @RequestMapping(value = "/{seckillId}/exposer",
+            method = RequestMethod.POST,
+            produces = {"application/json;charset=UTF-8"})
     @ResponseBody//告诉spring我是返回json类型的，并且 produces = {"application/json;charset=UTF-8"}
-    public SeckillResult<Exposer> exposer(Long seckillId)//json的数据封装，不用Model了
+    public SeckillResult<Exposer> exposer(@PathVariable("seckillId") Long seckillId)//json的数据封装，不用Model了
     {
         SeckillResult<Exposer> result;
          try {
@@ -61,6 +61,7 @@ public class SeckillController {
                  Exposer exposer=seckillService.exportSeckillUrl(seckillId);
                  result=new SeckillResult<Exposer>(true,exposer);
                    logger.info(" exposer ={}", exposer );
+                    logger.info(" result ={}", result );
                } catch (Exception e) {
                    logger.error(e.getMessage(),e);
                  result=new SeckillResult<Exposer>(false,e.getMessage());
@@ -68,8 +69,8 @@ public class SeckillController {
         return result;
     }
     @RequestMapping(value = "/{seckillId}/{md5}/execution",
-                    method = RequestMethod.POST
-                    )
+                    method = RequestMethod.POST,
+                    produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") Long seckillId,
                                                    @PathVariable("md5") String md5,
@@ -77,7 +78,7 @@ public class SeckillController {
     {                                               //required = false意思是不是必要的，防止没有手机号报错
         SeckillResult<SeckillExecution> execution;
         if (phone==null)
-            return new SeckillResult<SeckillExecution>(false,"未注册");
+            return new SeckillResult<SeckillExecution>(false,"no register");
          try {
                 SeckillExecution seckillExecution=seckillService.executeSeckill(seckillId,phone,md5);
                 return new SeckillResult<SeckillExecution>(true,seckillExecution);
@@ -94,7 +95,10 @@ public class SeckillController {
                }
 
     }
-    @RequestMapping(value = "/time/now",method = RequestMethod.GET)
+    @RequestMapping(value = "/time/now",
+            method = RequestMethod.GET,
+            produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
     public SeckillResult<Long> time()
     {
         Date now=new Date();
