@@ -28,9 +28,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="phone" class="col-sm-2 control-label">手机号</label>
+            <label id="cookiePhone" for="phone" class="col-sm-2 control-label">手机号</label>
             <div class="col-sm-10">
                 <input type="text" name="phone" class="form-control" id="phone" placeholder="手机号">
+
             </div>
         </div>
         <div class="form-group">
@@ -55,4 +56,5 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </html>

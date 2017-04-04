@@ -7,6 +7,46 @@
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="seckill"/>
+    <table name="account" schema="" catalog="seckill" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="login" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pass" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="category" schema="" catalog="seckill" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="type" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hot" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="aid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="forder" schema="" catalog="seckill" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="remark" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="total" sqlType="DECIMAL" precision="8" scale="2" nullable="true" jdbcType="3"/>
+      <column name="post" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MQ=="/>
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="product" schema="" catalog="seckill" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="price" sqlType="DECIMAL" precision="8" scale="2" nullable="false" jdbcType="3"/>
+      <column name="pic" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="remark" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="xremark" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="commend" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="open" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="cid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="seckill" schema="" catalog="seckill" type="TABLE">
       <column name="seckill_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" remarks="aWQ=" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="120" scale="0" nullable="false" jdbcType="12" remarks="5ZWG5ZOB5ZCN56ew"/>
@@ -18,6 +58,20 @@
       <index name="idx_create_time" unique="false" columns="create_time"/>
       <index name="idx_end_time" unique="false" columns="end_time"/>
       <index name="idx_start_time" unique="false" columns="start_time"/>
+    </table>
+    <table name="sorder" schema="" catalog="seckill" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="price" sqlType="DECIMAL" precision="8" scale="2" nullable="true" jdbcType="3"/>
+      <column name="number" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="fid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="status" schema="" catalog="seckill" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="status" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="success_killed" schema="" catalog="seckill" type="TABLE">
       <column name="seckill_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" remarks="56eS5p2A5ZWG5ZOBaWQ="/>

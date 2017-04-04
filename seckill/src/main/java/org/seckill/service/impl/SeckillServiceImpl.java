@@ -1,5 +1,6 @@
 package org.seckill.service.impl;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import org.seckill.dao.SeckillDao;
 import org.seckill.dao.SuccessKilledDao;
 import org.seckill.dto.Exposer;
@@ -44,7 +45,7 @@ public class SeckillServiceImpl implements SeckillService{
 
     @Override
     public List<Seckill> getSeckillList() {
-        return seckillDao.queryAll(0,4);
+        return seckillDao.queryAll(0,6);
     }
 
     @Override
